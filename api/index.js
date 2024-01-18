@@ -11,11 +11,12 @@ const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 require('./conn');
+require('dotenv').config();
 
 const port = 4000;
 
 const salt = bcrypt.genSaltSync(10);
-const secret = 'asdfe45we45w345wegw345werjktjwer';
+const secret = process.env.JWT;
 
 app.use(cors({credentials:true, origin:'http://localhost:3000'}));
 app.use(express.json());
@@ -148,4 +149,3 @@ app.get('/post/:id', async (req, res) => {
 app.listen(port, () => {
   console.log(`server is start port number ${port}`);
 });
-//updation is not working
